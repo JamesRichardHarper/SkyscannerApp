@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+//    alias(libs.plugins.kotlinSerialization)
+    kotlin("plugin.serialization") version "2.1.0"
 }
 
 kotlin {
@@ -36,7 +38,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.okhttp)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -49,12 +52,19 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlin.test)
-            implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+            implementation(libs.ktor.client.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.test)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
-            implementation(libs.okhttp)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.koin.android)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -87,7 +97,6 @@ android {
 }
 
 dependencies {
-    implementation(project.dependencies.platform(libs.okhttp.bom))
     debugImplementation(compose.uiTooling)
 }
 

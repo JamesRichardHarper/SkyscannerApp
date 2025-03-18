@@ -1,6 +1,5 @@
 package org.example.project.Utils.DataRequests
 
-@Seri
 data class Location(
     val id: String,
     val type: String,
