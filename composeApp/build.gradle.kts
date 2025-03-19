@@ -9,6 +9,13 @@ plugins {
     alias(libs.plugins.composeCompiler)
 //    alias(libs.plugins.kotlinSerialization)
     kotlin("plugin.serialization") version "2.1.0"
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.ktorfit)
+}
+
+repositories {
+    mavenCentral()
+    google()
 }
 
 kotlin {
@@ -51,17 +58,18 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.kotlin.test)
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
             implementation(libs.ktor.client.core)
             implementation(libs.koin.core)
             implementation(libs.koin.test)
+            implementation(libs.ktorfit.lib)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.ktor.client.okhttp)
-            implementation(libs.koin.android)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

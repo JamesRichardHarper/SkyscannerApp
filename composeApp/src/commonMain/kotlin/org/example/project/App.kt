@@ -18,10 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.example.project.Model.ApiHandler
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import skyscannerscanner.composeapp.generated.resources.Res
@@ -32,15 +34,31 @@ import skyscannerscanner.composeapp.generated.resources.compose_multiplatform
 fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
+        var responseText by remember { mutableStateOf("") }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = "Today's date is ${todaysDate()}",
                 modifier = Modifier.padding((20.dp)),
                 fontSize = 24.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                lineHeight = 20.sp
+            )
+            Text(
+                text = "Here we have: ${responseText}",
+                modifier = Modifier.padding((20.dp)),
+                fontSize = 24.sp,
+                textAlign = TextAlign.Center,
+                lineHeight = 20.sp
             )
             Button(onClick = { showContent = !showContent }) {
                 Text("Click me!")
+            }
+            Button(
+                onClick = {
+                    responseText = getExample()
+                }
+            ){
+                Text("Pull Data")
             }
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }
@@ -54,10 +72,19 @@ fun App() {
 }
 
 fun todaysDate(): String{
-
     fun LocalDateTime.format() = toString().substringBefore('T')
-
     val now = Clock.System.now()
     val zone = TimeZone.currentSystemDefault()
     return now.toLocalDateTime(zone).format()
 }
+
+fun getExample(): String{
+    return runBlocking {
+        var client = ApiHandler();
+        var exampleCharacter = client.createExample();
+        var response = exampleCharacter.getPerson();
+        return@runBlocking response
+        //var response = async(start = CoroutineStart.LAZY){ exampleCharacter.getPerson() }
+    }
+}
+
