@@ -64,6 +64,7 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.koin.core)
             implementation(libs.koin.test)
+            implementation(libs.koin.annotations)
             implementation(libs.ktorfit.lib)
         }
         desktopMain.dependencies {

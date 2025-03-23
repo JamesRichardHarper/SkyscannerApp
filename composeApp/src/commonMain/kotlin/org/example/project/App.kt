@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
@@ -26,12 +27,16 @@ import kotlinx.datetime.toLocalDateTime
 import org.example.project.Model.ApiHandler
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.core.context.startKoin
 import skyscannerscanner.composeapp.generated.resources.Res
 import skyscannerscanner.composeapp.generated.resources.compose_multiplatform
 
 @Composable
 @Preview
 fun App() {
+    startKoin {
+        printLogger()
+    }
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         var responseText by remember { mutableStateOf("") }
@@ -83,6 +88,7 @@ fun getExample(): String{
         var client = ApiHandler();
         var exampleCharacter = client.createExample();
         var response = exampleCharacter.getPerson();
+        val one = async{ response }
         return@runBlocking response
         //var response = async(start = CoroutineStart.LAZY){ exampleCharacter.getPerson() }
     }

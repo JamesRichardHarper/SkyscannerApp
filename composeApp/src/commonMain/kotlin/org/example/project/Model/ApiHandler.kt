@@ -2,6 +2,7 @@ package org.example.project.Model
 
 import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.http.GET
+import org.example.project.Utils.Constants
 
 interface ExampleApi {
     @GET("people/1/")
@@ -11,8 +12,9 @@ interface ExampleApi {
 class ApiHandler {
     val ktorfit = Ktorfit
         .Builder()
-        .baseUrl("https://swapi.dev/api/")
+        .baseUrl(Constants.API_WEBSITE.toString())
         .build()
+    //NOTE: the below crete method is used due to a bug with Ktorfit
     fun createExample(): ExampleApi{
         return ktorfit.create<ExampleApi>()
     }
