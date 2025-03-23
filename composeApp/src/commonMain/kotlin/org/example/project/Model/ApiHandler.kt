@@ -12,7 +12,7 @@ interface ExampleApi {
 class ApiHandler {
     val ktorfit = Ktorfit
         .Builder()
-        .baseUrl(Constants.API_WEBSITE.toString())
+        .baseUrl(Constants.API_WEBSITE.value)
         .build()
     //NOTE: the below crete method is used due to a bug with Ktorfit
     fun createExample(): ExampleApi{
