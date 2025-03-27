@@ -33,6 +33,12 @@ kotlin{
     jvm("desktop")
 
     sourceSets{
+        val desktopMain by getting
+
+        androidMain.dependencies {
+
+        }
+
         commonMain.dependencies {
             implementation(projects.domain.flights)
             implementation(projects.ui.core)
@@ -41,6 +47,11 @@ kotlin{
             implementation(libs.koin.test)
             implementation(libs.koin.annotations)
             implementation(libs.bundles.koin.compose)
+            implementation(libs.bundles.kotlin)
+        }
+
+        desktopMain.dependencies {
+
         }
     }
 }

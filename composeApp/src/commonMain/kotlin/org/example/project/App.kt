@@ -12,13 +12,17 @@ import org.example.project.feature.settings.Settings
 import org.example.project.feature.settings.settingsPaths
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
+import org.koin.core.module.Module
+import org.example.project.data.flights.createDataStore
 
 @Composable
 @Preview
-fun App() {
+fun App(
+    platformModule: Module = Module(),
+) {
     KoinApplication(
         application = {
-            modules(appModule)
+            modules(appModule, platformModule)
         }
     ){
         MaterialTheme{

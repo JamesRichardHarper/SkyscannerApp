@@ -46,7 +46,6 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
-            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(projects.feature.flights)
@@ -100,9 +99,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-
 dependencies {
-    debugImplementation(compose.uiTooling)
+    implementation(project(":data:flights"))
 }
 
 compose.desktop {
