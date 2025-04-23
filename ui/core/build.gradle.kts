@@ -56,7 +56,7 @@ kotlin{
 
         desktopMain.dependencies {
             api(compose.desktop.currentOs)
-            api(libs.kotlinx.coroutines.core)
+            api(libs.kotlinx.coroutines.swing)
         }
     }
 }

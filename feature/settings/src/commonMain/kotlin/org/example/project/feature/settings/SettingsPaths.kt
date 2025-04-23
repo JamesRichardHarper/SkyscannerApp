@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
+import org.koin.compose.viewmodel.koinViewModel
 
 @Serializable
 data object Settings
@@ -16,12 +17,14 @@ fun NavGraphBuilder.settingsPaths(
     goBack: () -> Unit,
 ){
     composable<Settings>{
+        val viewModel: SettingsViewModel = koinViewModel()
         SettingsScreen(
             actionOne = actionOne,
             actionTwo = actionTwo,
             testPull = testPull,
             goBack = goBack,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            viewModel = viewModel,
         )
     }
 }
