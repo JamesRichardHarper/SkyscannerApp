@@ -7,6 +7,15 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
+//    kotlin("plugin.serialization") version "2.1.0"
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.ktorfit)
+}
+
+repositories {
+    mavenCentral()
+    google()
 }
 
 kotlin {
@@ -36,25 +45,30 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.okhttp)
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(projects.feature.flights)
+            implementation(projects.feature.menu)
+            implementation(projects.feature.settings)
+            implementation(projects.ui.core)
+
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(libs.kotlinx.datetime)
+            implementation(libs.bundles.kotlin)
             implementation(libs.kotlin.test)
-            implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+            implementation(libs.ktor.client.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.test)
+            implementation(libs.koin.annotations)
+            implementation(libs.bundles.koin.compose)
+            implementation(libs.ktorfit.lib)
         }
         desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutines.swing)
-            implementation(libs.okhttp)
+            implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -84,11 +98,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-}
-
-dependencies {
-    implementation(project.dependencies.platform(libs.okhttp.bom))
-    debugImplementation(compose.uiTooling)
 }
 
 compose.desktop {

@@ -1,4 +1,4 @@
-rootProject.name = "SkyScannerScanner"
+rootProject.name = "SkyScannerApp"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -29,3 +29,12 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":data:core")
+include(":data:flights")
+include(":data:settings")
+include(":domain:flights")
+include(":domain:settings")
+include(":feature:flights")
+include(":feature:menu")
+include(":feature:settings")
+include(":ui:core")
