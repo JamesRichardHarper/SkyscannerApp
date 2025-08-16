@@ -37,12 +37,12 @@ fun App(
             // ideally it'll be removed for the MVP
             // ")
             CompositionLocalProvider(
-                LocalPadding provides Padding(
-                    normal = 0.dp,
-                ),
-                LocalDimensions provides Dimensions(
-                    maxWidthSmall = 2000.dp,
-                )
+//                LocalPadding provides Padding(
+//                    normal = 0.dp,
+//                ),
+//                LocalDimensions provides Dimensions(
+//                    maxWidthSmall = 2000.dp,
+//                )
             ){
                 NavHost(
                     navController = navController,

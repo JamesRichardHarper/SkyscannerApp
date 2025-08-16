@@ -1,4 +1,4 @@
-package org.example.project.feature.menu
+package org.example.project.ui.core
 
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 // This could really do with being shifted into the UI layer
 // the component is re-usable for the other screens
 // ")
-internal fun MenuButton(
+fun MenuButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
