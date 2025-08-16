@@ -1,9 +1,12 @@
 package org.example.project.feature.settings
 
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Text
@@ -25,14 +28,15 @@ internal fun SettingsScreen(
     viewModel: SettingsViewModel,
 ) {
     val username by viewModel.username.collectAsStateWithLifecycle()
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = modifier.fillMaxSize()
     ){
         Column(
-            horizontalAlignment = Alignment.Start,
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = modifier,
+//            modifier = modifier,
         ){
             Text("Username")
             TextField(
@@ -50,9 +54,9 @@ internal fun SettingsScreen(
             }
         }
         Column(
-            horizontalAlignment = Alignment.End,
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
-            modifier = modifier,
+//            modifier = modifier,
         ) {
             TextButton(
                 onClick = testPull

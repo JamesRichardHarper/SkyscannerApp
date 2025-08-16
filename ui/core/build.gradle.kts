@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -48,10 +49,8 @@ kotlin{
             api(compose.components.resources)
             api(compose.components.uiToolingPreview)
 
-            implementation(libs.koin.core)
-            implementation(libs.koin.test)
-            implementation(libs.koin.annotations)
-            implementation(libs.bundles.koin.compose)
+            @OptIn(ExperimentalComposeLibrary::class)
+            api(compose.uiTest)
         }
 
         desktopMain.dependencies {
