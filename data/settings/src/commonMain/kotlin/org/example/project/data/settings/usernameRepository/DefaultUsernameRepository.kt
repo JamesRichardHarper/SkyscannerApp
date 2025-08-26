@@ -2,10 +2,10 @@ package org.example.project.data.settings.usernameRepository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.example.project.data.core.storage.Storage
+import org.example.project.data.core.storage.StoragePreference
 
 class DefaultUsernameRepository(
-    private val storage: Storage,
+    private val storage: StoragePreference,
 ): UsernameRepository {
     override val username: Flow<String>
         get() = storage
