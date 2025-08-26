@@ -12,13 +12,13 @@ data object Menu
 fun NavGraphBuilder.menuPaths(
     goToSettings: () -> Unit,
     goToHistory: () -> Unit,
-    testPull: () -> Unit,
+    goToFlightsMenu: () -> Unit,
 ){
     composable<Menu>{
         MenuScreen(
             goToSettings = goToSettings,
             goToHistory = goToHistory,
-            testPull = testPull,
+            testPull = goToFlightsMenu,
             modifier = Modifier.fillMaxSize()
         )
     }

@@ -1,19 +1,23 @@
 package org.example.project.ui.core
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.example.project.ui.core.layout.LocalDimensions
+import org.example.project.ui.core.layout.LocalPadding
 
 @Composable
-//TODO("
-// This could really do with being shifted into the UI layer
-// the component is re-usable for the other screens
-// ")
 fun MenuButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
+        .padding(horizontal = LocalPadding.current.normal)
+        .widthIn(max = LocalDimensions.current.maxWidthSmall)
+        .fillMaxWidth()
 ){
     TextButton(
         onClick = onClick,

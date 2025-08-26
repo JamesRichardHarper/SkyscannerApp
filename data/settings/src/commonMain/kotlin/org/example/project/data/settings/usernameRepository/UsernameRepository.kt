@@ -1,4 +1,4 @@
-package org.example.project.data.settings
+package org.example.project.data.settings.usernameRepository
 
 import kotlinx.coroutines.flow.Flow
 import org.example.project.data.core.storage.Storage

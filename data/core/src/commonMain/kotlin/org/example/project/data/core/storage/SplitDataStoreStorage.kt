@@ -12,24 +12,28 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
+import org.example.project.data.core.storage.interfaces.BaseKey
+import org.example.project.data.core.storage.interfaces.Readable
+import org.example.project.data.core.storage.interfaces.Writable
 
-class DataStoreStorage(
+class SplitDataStoreStorage(
     private val dataStore: DataStore<Preferences>
-): Storage {
-    override fun <T> getAsFlow(key: Storage.Key<T>): Flow<T?> {
+): StoragePreference{
+    //TODO("Can change the name later, just want a test version")
+    override fun <T> getAsFlow(key: BaseKey.Key<T>): Flow<T?> {
         return dataStore.data.map{
             preferences ->
             preferences[getDataStoreKey(key)] ?: key.defaultValue
         }
     }
 
-    override suspend fun <T> get(key: Storage.Key<T>): T? {
+    override suspend fun <T> get(key: BaseKey.Key<T>): T? {
         return getAsFlow(key).firstOrNull() ?: key.defaultValue
     }
 
-    override suspend fun <T> writeValue(key: Storage.Key<T>, value: T?) {
+    override suspend fun <T> writeValue(key: BaseKey.Key<T>, value: T?) {
         dataStore.edit {
-            preferences ->
+                preferences ->
             val dataStoreKey = getDataStoreKey(key)
             if (value == null){
                 preferences.remove(dataStoreKey)
@@ -40,14 +44,14 @@ class DataStoreStorage(
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun<T> getDataStoreKey(key: Storage.Key<T>): Preferences.Key<T>{
+    private fun<T> getDataStoreKey(key: BaseKey.Key<T>): Preferences.Key<T>{
         return when (key){
-            is Storage.Key.BooleanKey -> booleanPreferencesKey(key.name)
-            is Storage.Key.DoubleKey -> doublePreferencesKey(key.name)
-            is Storage.Key.FloatKey -> floatPreferencesKey(key.name)
-            is Storage.Key.IntKey -> intPreferencesKey(key.name)
-            is Storage.Key.LongKey -> longPreferencesKey(key.name)
-            is Storage.Key.StringKey -> stringPreferencesKey(key.name)
+            is BaseKey.Key.BooleanKey -> booleanPreferencesKey(key.name)
+            is BaseKey.Key.DoubleKey -> doublePreferencesKey(key.name)
+            is BaseKey.Key.FloatKey -> floatPreferencesKey(key.name)
+            is BaseKey.Key.IntKey -> intPreferencesKey(key.name)
+            is BaseKey.Key.LongKey -> longPreferencesKey(key.name)
+            is BaseKey.Key.StringKey -> stringPreferencesKey(key.name)
         } as Preferences.Key<T>
         TODO("Look at if it's possible to make this without the supression")
     }

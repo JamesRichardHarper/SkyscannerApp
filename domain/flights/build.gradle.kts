@@ -25,6 +25,7 @@ kotlin{
             implementation(projects.data.settings)
 
             implementation(libs.koin.core)
+            implementation(libs.bundles.kotlin)
         }
     }
 }

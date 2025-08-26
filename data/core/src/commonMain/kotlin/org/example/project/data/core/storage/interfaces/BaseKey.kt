@@ -1,14 +1,6 @@
-package org.example.project.data.core.storage
+package org.example.project.data.core.storage.interfaces
 
-import kotlinx.coroutines.flow.Flow
-
-interface Storage {
-    fun<T>getAsFlow(key: Key<T>): Flow<T?>
-    suspend fun<T>get(key: Key<T>): T?
-    suspend fun<T>writeValue(key: Key<T>, value: T?): Unit
-    suspend fun<T>clearValue(key: Key<T>){
-        writeValue(key, null)
-    }
+interface BaseKey{
     sealed class Key<T>(
         val name: String,
         val defaultValue: T?

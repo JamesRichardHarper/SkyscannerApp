@@ -1,21 +1,14 @@
 package org.example.project
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import org.example.project.feature.menu.Menu
 import org.example.project.feature.menu.menuPaths
 import org.example.project.feature.settings.Settings
 import org.example.project.feature.settings.settingsPaths
-import org.example.project.ui.core.layout.Dimensions
-import org.example.project.ui.core.layout.LocalDimensions
-import org.example.project.ui.core.layout.LocalPadding
-import org.example.project.ui.core.layout.Padding
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
 import org.koin.core.module.Module
@@ -51,7 +44,10 @@ fun App(
                     menuPaths(
                         goToSettings = { navController.navigate(Settings) },
                         goToHistory = { },
-                        testPull = { },
+                        goToFlightsMenu = {
+                            TODO("Flights Screen exists but need to institute the viewModel and Paths" +
+                                    "will leave this until last when the domain contracts + core code are in play")
+                        },
                     )
                     settingsPaths(
                         actionOne = { },
