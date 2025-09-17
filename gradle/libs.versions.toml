@@ -65,6 +65,7 @@ koin-annotations = {module = "io.insert-koin:koin-annotations", version.ref = "k
 
 #ktorfit
 ktorfit-lib = { module = "de.jensklingenberg.ktorfit:ktorfit-lib", version.ref = "ktorfit"}
+junit-junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [bundles]
 kotlin = ["kotlinx-datetime", "kotlinx-coroutines-core", "kotlinx-serialization-json"]

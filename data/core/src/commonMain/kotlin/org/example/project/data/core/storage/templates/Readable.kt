@@ -1,4 +1,4 @@
-package org.example.project.data.core.storage.interfaces
+package org.example.project.data.core.storage.templates
 
 import kotlinx.coroutines.flow.Flow
 

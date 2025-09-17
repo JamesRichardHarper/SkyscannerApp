@@ -29,11 +29,12 @@ kotlin{
     }
 
     jvm("desktop")
-
     sourceSets{
         commonMain.dependencies {
             implementation(libs.koin.core)
             implementation(libs.datastore.preferences.core)
+
+            implementation(libs.kotlin.test)
         }
     }
 }

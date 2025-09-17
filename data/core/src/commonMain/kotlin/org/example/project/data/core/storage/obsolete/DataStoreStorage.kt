@@ -1,4 +1,4 @@
-package org.example.project.data.core.storage
+package org.example.project.data.core.storage.obsolete
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

@@ -12,9 +12,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
-import org.example.project.data.core.storage.interfaces.BaseKey
-import org.example.project.data.core.storage.interfaces.Readable
-import org.example.project.data.core.storage.interfaces.Writable
+import org.example.project.data.core.storage.templates.BaseKey
 
 class SplitDataStoreStorage(
     private val dataStore: DataStore<Preferences>

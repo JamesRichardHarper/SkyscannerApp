@@ -1,7 +1,7 @@
 package org.example.project.data.settings.usernameRepository
 
 import kotlinx.coroutines.flow.Flow
-import org.example.project.data.core.storage.interfaces.BaseKey
+import org.example.project.data.core.storage.templates.BaseKey
 
 interface UsernameRepository {
     val username: Flow<String>
