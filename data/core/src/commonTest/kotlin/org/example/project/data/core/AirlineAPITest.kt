@@ -2,7 +2,7 @@ package org.example.project.data.core
 
 import kotlin.test.Test
 
-class AirlineAPITest {
+class AirlineAPITest: KoinTest {
     @Test
     fun getServerStatus(){
         application {

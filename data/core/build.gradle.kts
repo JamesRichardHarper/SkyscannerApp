@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.ktorfit)
 }
 
 kotlin{
@@ -30,11 +29,24 @@ kotlin{
 
     jvm("desktop")
     sourceSets{
+        val desktopMain by getting
         commonMain.dependencies {
             implementation(libs.koin.core)
+            implementation(libs.koin.test)
             implementation(libs.datastore.preferences.core)
+            implementation(libs.bundles.ktor.common)
 
             implementation(libs.kotlin.test)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+        desktopMain.dependencies{
+            implementation(libs.ktor.client.okhttp)
         }
     }
 }
