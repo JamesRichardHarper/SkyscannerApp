@@ -1,10 +1,10 @@
-package org.example.project.data.core.storage.templates
+package org.example.project.data.core.iTemplates
 
-interface BaseKey{
+interface StorageKey{
     sealed class Key<T>(
-        val name: String,
-        val defaultValue: T?
-    ){
+        name: String,
+        defaultValue: T?
+    ): BaseKey<T>(name, defaultValue) {
         open class StringKey(name: String, defaultValue: String?): Key<String>(name, defaultValue)
         open class IntKey(name: String, defaultValue: Int?): Key<Int>(name, defaultValue)
         open class LongKey(name: String, defaultValue: Long?): Key<Long>(name, defaultValue)

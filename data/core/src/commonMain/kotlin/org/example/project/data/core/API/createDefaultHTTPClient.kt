@@ -1,15 +1,14 @@
-package org.example.project.data.core.storage.FlightAPI
+package org.example.project.data.core.API
 
 import io.ktor.client.*
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.defaultRequest
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-class FlightAPIClient(
-    engine: HttpClientEngine
-){
-    private val httpClient = HttpClient(engine){
+fun createDefaultHTTPClient(): HttpClient{
+    return HttpClient{
         install(ContentNegotiation){
             json(
                 Json{
@@ -17,6 +16,9 @@ class FlightAPIClient(
                     isLenient = true
                 }
             )
+        }
+        defaultRequest {
+            url("https://swapi.dev/api/")
         }
     }
 }

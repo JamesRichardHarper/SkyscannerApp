@@ -11,9 +11,9 @@ import org.koin.dsl.module
 
 val coreDataModule = module {
     includes(platformModule)
-    singleOf(::DataStoreStorage){
-        bind<Storage>()
-    }
+//    singleOf(::DataStoreStorage){
+//        bind<Storage>()
+//    }
     singleOf(::SplitDataStoreStorage){
         bind<StoragePreference>()
     }
