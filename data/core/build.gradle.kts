@@ -36,17 +36,22 @@ kotlin{
             implementation(libs.datastore.preferences.core)
             implementation(libs.bundles.ktor.common)
         }
-
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.bundles.ktor.common)
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
+        iosTest.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
         }
+
         desktopMain.dependencies{
             implementation(libs.ktor.client.okhttp)
         }
